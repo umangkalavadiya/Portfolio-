@@ -14,5 +14,5 @@ This repository contains the code for a personal portfolio website. The website 
 
 ## Getting Started
 
- - To view the website, simply click [here](https://prakrutipathak.netlify.app/)
+ - To view the website, simply click [here](https://umangkalavadiya.netlify.app//)
  
