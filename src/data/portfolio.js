@@ -2,6 +2,8 @@ export const profile = {
   name: 'Umang Kalavadiya',
   title: 'AI/ML Engineer',
   tagline: 'Building scalable AI systems at the intersection of NLP, GenAI, and Computer Vision.',
+  summary:
+    'Technical Project Manager – AI with a hands-on engineering background in Generative AI, Agentic AI, MCP, and RAG-based systems, and a rapid trajectory from AI Engineer to AI team lead. Currently directing an AI engineering team at E2M Solutions, owning the AI product roadmap, architecture decisions, model selection, and Agile delivery for digital agency clients. Combines deep technical fluency in LLMs, LLM fine-tuning, multi-agent orchestration with LangChain, LangGraph, and CrewAI, prompt engineering, function calling, vector databases, and automations with proven cross-functional leadership, stakeholder management, and the ability to translate complex AI capabilities into measurable business outcomes.',
   email: 'umang.kalavadiya@gmail.com',
   phone: '+91-6351301322',
   github: 'https://github.com/umangkalavadiya',

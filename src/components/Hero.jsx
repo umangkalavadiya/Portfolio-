@@ -9,7 +9,7 @@ const ROLES = [
   'GenAI Architect',
   'RAG Specialist',
   'NLP Engineer',
-  'CV Researcher'
+  'Project Manager - AI'
 ]
 
 export default function Hero() {
@@ -92,11 +92,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-300 text-balance md:text-xl"
+          className="mt-8 max-w-3xl text-base leading-relaxed text-ink-300 md:text-lg"
         >
-          {profile.tagline} Currently leading AI engineering at{' '}
-          <span className="text-ink-50">E2M Solutions</span>, shipping RAG pipelines,
-          autonomous agents, and end-to-end automation for global clients.
+          {profile.summary}
         </motion.p>
 
         <motion.div
@@ -127,10 +125,10 @@ export default function Hero() {
           className="mt-16 grid grid-cols-2 gap-6 border-t border-ink-800 pt-8 md:grid-cols-4 md:gap-8"
         >
           {[
-            { label: 'Projects shipped', value: '15+' },
-            { label: 'Clients served', value: '20+' },
-            { label: 'Years in AI', value: '2+' },
-            { label: 'Team led', value: '5' }
+            { label: 'Projects shipped', value: '50+' },
+            { label: 'Clients served', value: '30+' },
+            { label: 'Years in AI', value: '3+' },
+            { label: 'Team led', value: '15' }
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col gap-1">
               <span className="font-display text-3xl font-light text-ink-50 md:text-4xl">

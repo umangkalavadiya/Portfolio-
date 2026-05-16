@@ -15,12 +15,14 @@ export default function App() {
   const [loaderGone, setLoaderGone] = useState(false)
 
   useEffect(() => {
-    // Loader timeline:
-    //   0 → 4.5s : title/HUD build + scramble + glitch flickers
-    //   4.5 → 5.4s : doors slam apart (0.9s)
-    // Content fades in mid-open at ~5.0s, loader unmounts at 5.6s.
-    const t1 = setTimeout(() => setContentReady(true), 5000)
-    const t2 = setTimeout(() => setLoaderGone(true), 5600)
+    // Loader timeline — TrueFocus advances 1 word every 0.55s
+    // (animationDuration 0.35 + pauseBetweenAnimations 0.2) across the
+    // 9 words, so one full focus pass finishes in ~4.95s.
+    //   0 → ~5s : every word gets focused once
+    //   4.6s    : content fades in behind the (still opaque) loader
+    //   5.0s    : loader starts its 0.6s fade-out, then unmounts
+    const t1 = setTimeout(() => setContentReady(true), 4600)
+    const t2 = setTimeout(() => setLoaderGone(true), 5000)
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
