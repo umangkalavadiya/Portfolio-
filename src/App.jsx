@@ -15,14 +15,14 @@ export default function App() {
   const [loaderGone, setLoaderGone] = useState(false)
 
   useEffect(() => {
-    // Loader timeline — TrueFocus advances 1 word every 0.55s
-    // (animationDuration 0.35 + pauseBetweenAnimations 0.2) across the
-    // 9 words, so one full focus pass finishes in ~4.95s.
-    //   0 → ~5s : every word gets focused once
-    //   4.6s    : content fades in behind the (still opaque) loader
-    //   5.0s    : loader starts its 0.6s fade-out, then unmounts
-    const t1 = setTimeout(() => setContentReady(true), 4600)
-    const t2 = setTimeout(() => setLoaderGone(true), 5000)
+    // Loader timeline — two stages:
+    //   0 → ~4.4s : TrueFocus walks every word (8 tokens × 0.55s)
+    //   ~4.8s     : crossfade → FallingText drops the words
+    //   ~4.8 → 8s : words tumble + settle (draggable meanwhile)
+    //   7.9s      : content fades in behind the (still opaque) loader
+    //   8.4s      : loader starts its 0.6s fade-out, then unmounts
+    const t1 = setTimeout(() => setContentReady(true), 7900)
+    const t2 = setTimeout(() => setLoaderGone(true), 8400)
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)

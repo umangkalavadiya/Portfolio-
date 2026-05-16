@@ -13,7 +13,8 @@ const TrueFocus = ({
   lastWordGlow = null,
   lastWordCount = 1,
   animationDuration = 0.5,
-  pauseBetweenAnimations = 1
+  pauseBetweenAnimations = 1,
+  onComplete = null
 }) => {
   const words = sentence.split(separator);
   const highlightStart = words.length - lastWordCount;
@@ -22,6 +23,12 @@ const TrueFocus = ({
   const containerRef = useRef(null);
   const wordRefs = useRef([]);
   const [focusRect, setFocusRect] = useState({ x: 0, y: 0, width: 0, height: 0 });
+
+  // Keep the latest onComplete without re-running the timer effect.
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     if (!manualMode) {
@@ -35,6 +42,17 @@ const TrueFocus = ({
       return () => clearInterval(interval);
     }
   }, [manualMode, animationDuration, pauseBetweenAnimations, words.length]);
+
+  // Fire onComplete once, right as the last word's focus time ends
+  // (i.e. after one full pass over every word).
+  useEffect(() => {
+    if (manualMode) return;
+    const total = words.length * (animationDuration + pauseBetweenAnimations) * 1000;
+    const t = setTimeout(() => {
+      if (onCompleteRef.current) onCompleteRef.current();
+    }, total);
+    return () => clearTimeout(t);
+  }, [manualMode, words.length, animationDuration, pauseBetweenAnimations]);
 
   useEffect(() => {
     if (currentIndex === null || currentIndex === -1) return;
